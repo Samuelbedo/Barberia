@@ -13,10 +13,14 @@ namespace Barberia.Shared.Entities
 
         [Required(ErrorMessage = "Debe escoger una fecha")]
         [Display(Name = "Dia de la cita")]
-        public DateOnly Fecha { get; set; }
+        public string Fecha { get; set; }
 
         [Required(ErrorMessage = "Debe escoger una hora")]
         [Display(Name = "Hora de la cita")]
-        public TimeOnly Horario { get; set; }
+        public string Horario { get; set; }
+
+        [Display (Name = "Cita")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        public string Tipo { get; set; }//referencia si la cita va a ser a domicilio o en el local
     }
 }
