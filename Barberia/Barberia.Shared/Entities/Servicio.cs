@@ -13,7 +13,7 @@ namespace Barberia.Shared.Entities
 
         [Required]
         [MaxLength(350, ErrorMessage = "El campo {0} puede tener como maximo {1} caracteres")]
-        public string Descripcion { get; set; }
-        public float Precio { get; set; }
+        public string Descripcion { get; set; }//la descripcion del servicio la proporciona una lista
+        public float Precio { get; set; }//el precio del servicio lo proporciona una lista
     }
 }
