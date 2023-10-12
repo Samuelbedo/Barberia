@@ -12,7 +12,6 @@ namespace Barberia.API.Data
         public DbSet<Barbero> Barberos { get; set; }
         public DbSet<Cliente> Clientes{ get; set; }
         public DbSet<Cita> Citas { get; set; }
-        public DbSet<Domicilio> Domicilios{ get; set; }
         public DbSet<Servicio> Servicios{ get; set; }
         public DbSet<Facturacion> Facturaciones{ get; set; }
         public DbSet<Reseña> Reseñas{ get; set; }
