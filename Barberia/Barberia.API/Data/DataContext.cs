@@ -20,6 +20,8 @@ namespace Barberia.API.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Barbero>().HasIndex(b => b.Cedula).IsUnique();
+            modelBuilder.Entity<Cliente>().HasIndex(c => c.Cedula).IsUnique();
         }
     }
 }
