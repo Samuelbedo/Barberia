@@ -22,9 +22,9 @@ namespace Barberia.API.Controllers
         }
 
         [HttpGet("{Id=id}")]  //Get por parametro
-        public async Task<ActionResult> Get(int id)
+        public async Task<ActionResult> Get(int Id)
         {
-            var reseña = await _context.Reseñas.FirstOrDefaultAsync(r => r.Id == id);
+            var reseña = await _context.Reseñas.FirstOrDefaultAsync(r => r.Id == Id);
             if (reseña == null)
             {
                 return NotFound();
@@ -32,7 +32,7 @@ namespace Barberia.API.Controllers
             return Ok(reseña);
         }
 
-        [HttpPost]//inserta reseñas
+        [HttpPost]//insertar reseñas
         public async Task<IActionResult> Post(Reseña reseña)
         {
             _context.Add(reseña);
