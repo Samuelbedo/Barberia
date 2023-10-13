@@ -18,5 +18,8 @@ namespace Barberia.Shared.Entities
         [Display (Name = "Forma de pago")]
         [Required(ErrorMessage = "Debe seleccionar una Forma de pago")]
         public string MetodoPago { get; set; }
+
+        public int ClienteCedula { get; set; }
+        public Cliente Cliente { get; set; }
     }
 }
