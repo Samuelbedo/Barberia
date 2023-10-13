@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Barberia.Shared.Entities
@@ -20,5 +21,8 @@ namespace Barberia.Shared.Entities
         public int Telefono { get; set; }//el telefono solo es laboral, entonces un barbero solo tiene un telefono
 
         public string Especialidad { get; set; }
+
+        [JsonIgnore]
+        public ICollection<Cita> Citas { get; set; }//un barbero tiene muchas citas
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Barberia.Shared.Entities
@@ -22,6 +23,9 @@ namespace Barberia.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Direccion { get; set; }//solo se va a pedir una direccion
 
-        public Facturacion Facturacion { get; set; }
+        [JsonIgnore]
+        public ICollection<Cita> Citas { get; set; }//muchas citas
+        [JsonIgnore]
+        public Facturacion Facturacion { get; set; }//una facturacion
     }
 }

@@ -15,5 +15,11 @@ namespace Barberia.API.Data
         public DbSet<Servicio> Servicios{ get; set; }
         public DbSet<Facturacion> Facturaciones{ get; set; }
         public DbSet<Reseña> Reseñas{ get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+        }
     }
 }

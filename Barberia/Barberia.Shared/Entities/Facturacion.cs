@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Barberia.Shared.Entities
@@ -19,7 +20,9 @@ namespace Barberia.Shared.Entities
         [Required(ErrorMessage = "Debe seleccionar una Forma de pago")]
         public string MetodoPago { get; set; }
 
-        public int ClienteCedula { get; set; }
-        public Cliente Cliente { get; set; }
+        [JsonIgnore]
+        public int ClienteCedula { get; set; }//clave foranea cliente
+        [JsonIgnore]
+        public Cliente Cliente { get; set; }//un cliente
     }
 }
