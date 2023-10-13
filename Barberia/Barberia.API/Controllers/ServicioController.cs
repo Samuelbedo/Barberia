@@ -24,10 +24,10 @@ namespace Barberia.API.Controllers
         }
 
         
-        [HttpGet("{Id=ID}")]  //Get por parametro
-        public async Task<ActionResult> Get(int Id)
+        [HttpGet("{Id=id}")]  //Get por parametro
+        public async Task<ActionResult> Get(int id)
         {
-            var servicio = await _context.Servicios.FirstOrDefaultAsync(s => s.Id == Id);
+            var servicio = await _context.Servicios.FirstOrDefaultAsync(s => s.Id == id);
             if (servicio == null)
             {
                 return NotFound();
@@ -51,7 +51,7 @@ namespace Barberia.API.Controllers
             return Ok(servicio);
         }
 
-        [HttpDelete("{ID:int}")] //-->eliminar
+        [HttpDelete("{Id:int}")] //-->eliminar
         public async Task<IActionResult> Delete(int id)
         {
             var FilaAfectada = await _context.Servicios.Where(s => s.Id == id).ExecuteDeleteAsync();
