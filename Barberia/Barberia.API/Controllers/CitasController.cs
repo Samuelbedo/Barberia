@@ -51,7 +51,7 @@ namespace Barberia.API.Controllers
             return Ok(cita);
         }
 
-        [HttpDelete("{Id_Cita:int}")]
+        [HttpDelete("{Id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
             var FilaAfectada = await _context.Citas.Where(c => c.Id == id).ExecuteDeleteAsync();
