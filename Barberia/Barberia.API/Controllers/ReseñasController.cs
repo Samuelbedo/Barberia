@@ -6,55 +6,52 @@ using Microsoft.EntityFrameworkCore;
 namespace Barberia.API.Controllers
 {
     [ApiController]
-    [Route("/api/servicios")]
-    public class ServiciosController : ControllerBase
+    [Route("/api/reseñas")]
+    public class ReseñasController : ControllerBase
     {
         private readonly DataContext _context;
-
-        public ServiciosController(DataContext context)
+        public ReseñasController(DataContext context)
         {
             _context = context;
         }
 
-       
-        [HttpGet]  //Lista de servicios
+        [HttpGet]  //Lista de reseñas
         public async Task<ActionResult> Get()
         {
-            return Ok(await _context.Servicios.ToListAsync());
+            return Ok(await _context.Reseñas.ToListAsync());
         }
 
-        
         [HttpGet("{Id=id}")]  //Get por parametro
         public async Task<ActionResult> Get(int id)
         {
-            var servicio = await _context.Servicios.FirstOrDefaultAsync(s => s.Id == id);
-            if (servicio == null)
+            var reseña = await _context.Reseñas.FirstOrDefaultAsync(r => r.Id == id);
+            if (reseña == null)
             {
                 return NotFound();
             }
-            return Ok(servicio);
+            return Ok(reseña);
         }
 
-        [HttpPost]//inserta registros
-        public async Task<IActionResult> Post(Servicio servicio)
+        [HttpPost]//inserta reseñas
+        public async Task<IActionResult> Post(Reseña reseña)
         {
-            _context.Add(servicio);
+            _context.Add(reseña);
             await _context.SaveChangesAsync();// --> guarda en la tabla 
-            return Ok(servicio);
+            return Ok(reseña);
         }
 
         [HttpPut]// --> update
-        public async Task<IActionResult> Put(Servicio servicio)
+        public async Task<IActionResult> Put(Reseña reseña)
         {
-            _context.Add(servicio);
+            _context.Add(reseña);
             await _context.SaveChangesAsync();
-            return Ok(servicio);
+            return Ok(reseña);
         }
 
         [HttpDelete("{id:int}")] //-->eliminar
         public async Task<IActionResult> Delete(int id)
         {
-            var FilaAfectada = await _context.Servicios.Where(s => s.Id == id).ExecuteDeleteAsync();
+            var FilaAfectada = await _context.Reseñas.Where(r => r.Id == id).ExecuteDeleteAsync();
             if (FilaAfectada == 0)
             {
                 return NotFound();
