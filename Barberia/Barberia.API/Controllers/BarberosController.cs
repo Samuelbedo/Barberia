@@ -24,7 +24,7 @@ namespace Barberia.API.Controllers
         }
 
         //Get por parametro
-        [HttpGet("{Id=cedula}")]
+        [HttpGet("{Cedula=cedula}")]
         public async Task<ActionResult> Get(int Cedula)
         {
             var barbero = await _context.Barberos.FirstOrDefaultAsync(b => b.Cedula == Cedula);

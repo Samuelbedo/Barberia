@@ -24,7 +24,7 @@ namespace Barberia.API.Controllers
             return Ok(await _context.Clientes.ToListAsync());
         }
 
-        [HttpGet("{Id=cedula}")] //Get por parametro
+        [HttpGet("{Cedula=cedula}")] //Get por parametro
         public async Task<ActionResult> Get(int Cedula)
         {
             var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Cedula == Cedula);

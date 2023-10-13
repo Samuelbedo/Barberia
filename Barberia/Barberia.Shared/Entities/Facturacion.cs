@@ -10,7 +10,7 @@ namespace Barberia.Shared.Entities
     public class Facturacion
     {
         public int Id { get; set; }
-        public DateTime Fecha { get; set; }
+        public string Fecha { get; set; }
 
         [Display(Name = "Total")]
         public decimal Monto { get; set; }
