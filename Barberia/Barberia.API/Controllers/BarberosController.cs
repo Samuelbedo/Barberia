@@ -24,10 +24,10 @@ namespace Barberia.API.Controllers
         }
 
         //Get por parametro
-        [HttpGet("{Cedula=cedula}")]
-        public async Task<ActionResult> Get(int Cedula)
+        [HttpGet("{Id=id}")]
+        public async Task<ActionResult> Get(int Id)
         {
-            var barbero = await _context.Barberos.FirstOrDefaultAsync(b => b.Cedula == Cedula);
+            var barbero = await _context.Barberos.FirstOrDefaultAsync(b => b.Id == Id);
             if (barbero == null)
             {
                 return NotFound();
@@ -36,7 +36,7 @@ namespace Barberia.API.Controllers
         }
 
         [HttpPost]//insertar registros
-        public async Task<IActionResult> Post(Barbero barbero)
+        public async Task<ActionResult> Post(Barbero barbero)
         {
             _context.Add(barbero);
             await _context.SaveChangesAsync();//guardar la tabla de barberos
@@ -44,17 +44,17 @@ namespace Barberia.API.Controllers
         }
 
         [HttpPut]//update
-        public async Task<IActionResult> Put(Barbero barbero)
+        public async Task<ActionResult> Put(Barbero barbero)
         {
             _context.Add(barbero);
             await _context.SaveChangesAsync();
             return Ok(barbero);
         }
 
-        [HttpDelete("{cedula:int}")]
-        public async Task<IActionResult> Delete(int cedula)
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
         {
-            var FilaAfectada = await _context.Barberos.Where(b => b.Cedula == cedula).ExecuteDeleteAsync();
+            var FilaAfectada = await _context.Barberos.Where(b => b.Id == id).ExecuteDeleteAsync();
             if(FilaAfectada == 0)
             {
                 return NotFound();

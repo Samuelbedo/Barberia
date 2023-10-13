@@ -21,7 +21,7 @@ namespace Barberia.Shared.Entities
         public string MetodoPago { get; set; }
 
         [JsonIgnore]
-        public int ClienteCedula { get; set; }//clave foranea cliente
+        public int ClienteId { get; set; }//clave foranea cliente
         [JsonIgnore]
         public Cliente Cliente { get; set; }//un cliente
     }

@@ -14,7 +14,7 @@ namespace Barberia.Shared.Entities
         [JsonIgnore]
         public Barbero Barbero { get; set; }
         [JsonIgnore]
-        public int BarberoCedula { get; set; }
+        public int BarberoId { get; set; }
 
         //Reseña
         [JsonIgnore]

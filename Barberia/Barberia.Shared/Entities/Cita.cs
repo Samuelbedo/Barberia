@@ -24,11 +24,11 @@ namespace Barberia.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Tipo { get; set; }//referencia si la cita va a ser a domicilio o en el local
         [JsonIgnore]
-        public int BarberoCedula { get; set; }//clave foranea barbero
+        public int BarberoId { get; set; }//clave foranea barbero
         [JsonIgnore]
         public Barbero Barbero { get; set; }//un barbero 
         [JsonIgnore]
-        public int ClienteCedula { get; set; }//clave foranea cliente
+        public int ClienteId { get; set; }//clave foranea cliente
         [JsonIgnore]
         public Cliente Cliente { get; set; }//un cliente
         [JsonIgnore]

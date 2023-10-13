@@ -25,9 +25,9 @@ namespace Barberia.API.Controllers
         }
 
         [HttpGet("{Cedula=cedula}")] //Get por parametro
-        public async Task<ActionResult> Get(int Cedula)
+        public async Task<ActionResult> Get(int Id)
         {
-            var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Cedula == Cedula);
+            var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Id == Id);
             if (cliente == null)
             {
                 return NotFound();
@@ -53,9 +53,9 @@ namespace Barberia.API.Controllers
         }
 
         [HttpDelete("{cedula:int}")]
-        public async Task<IActionResult> Delete(int cedula)
+        public async Task<IActionResult> Delete(int id)
         {
-            var FilaAfectada = await _context.Clientes.Where(c => c.Cedula == cedula).ExecuteDeleteAsync();
+            var FilaAfectada = await _context.Clientes.Where(c => c.Id == id).ExecuteDeleteAsync();
             if (FilaAfectada == 0)
             {
                 return NotFound();
