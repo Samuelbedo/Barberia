@@ -21,5 +21,7 @@ namespace Barberia.Shared.Entities
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Direccion { get; set; }//solo se va a pedir una direccion
+
+        public Facturacion Facturacion { get; set; }
     }
 }
