@@ -24,7 +24,7 @@ namespace Barberia.API.Controllers
         }
 
         //Get por parametro
-        [HttpGet("{Id=Id_Cita}")]
+        [HttpGet("{Id=id}")]
         public async Task<ActionResult> Get(int Id)
         {
             var cita = await _context.Citas.FirstOrDefaultAsync(c => c.Id == Id);
@@ -51,7 +51,7 @@ namespace Barberia.API.Controllers
             return Ok(cita);
         }
 
-        [HttpDelete("{Id:int}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
             var FilaAfectada = await _context.Citas.Where(c => c.Id == id).ExecuteDeleteAsync();

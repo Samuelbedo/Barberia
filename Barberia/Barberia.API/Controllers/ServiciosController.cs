@@ -7,11 +7,11 @@ namespace Barberia.API.Controllers
 {
     [ApiController]
     [Route("/api/servicios")]
-    public class ServicioController : ControllerBase
+    public class ServiciosController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public ServicioController(DataContext context)
+        public ServiciosController(DataContext context)
         {
             _context = context;
         }
@@ -51,7 +51,7 @@ namespace Barberia.API.Controllers
             return Ok(servicio);
         }
 
-        [HttpDelete("{Id:int}")] //-->eliminar
+        [HttpDelete("{id:int}")] //-->eliminar
         public async Task<IActionResult> Delete(int id)
         {
             var FilaAfectada = await _context.Servicios.Where(s => s.Id == id).ExecuteDeleteAsync();
