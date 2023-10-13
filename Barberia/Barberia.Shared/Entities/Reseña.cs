@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Barberia.Shared.Entities
@@ -18,5 +19,8 @@ namespace Barberia.Shared.Entities
         [Display(Name = "Numero de estrellas")]
         [Required(ErrorMessage = "La calificacion es obligatoria")]
         public string Calificacion { get; set; }
+
+        [JsonIgnore]
+        public ICollection<BarberoReseña> BarberoReseña { get; set; }
     }
 }
