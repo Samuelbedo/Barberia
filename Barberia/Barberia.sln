@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barberia.Shared", "Barberia.Shared\Barberia.Shared.csproj", "{233F52A2-7055-4442-AE48-ACAB75B311A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Barberia.Shared", "Barberia.Shared\Barberia.Shared.csproj", "{233F52A2-7055-4442-AE48-ACAB75B311A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barberia.API", "Barberia.API\Barberia.API.csproj", "{DD2F3896-B1EC-46F7-95D2-A27A8A4BF9C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Barberia.API", "Barberia.API\Barberia.API.csproj", "{DD2F3896-B1EC-46F7-95D2-A27A8A4BF9C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barberia.WEB", "Barberia.WEB\Barberia.WEB.csproj", "{6457BA5F-1A84-4780-A654-88D49BB7A6F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Barberia.WEB", "Barberia.WEB\Barberia.WEB.csproj", "{6457BA5F-1A84-4780-A654-88D49BB7A6F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
