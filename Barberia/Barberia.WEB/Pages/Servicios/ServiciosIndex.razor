@@ -1,7 +1,54 @@
-﻿<h3>ServiciosIndex</h3>
+﻿@page "/Servicios"
+@using Barberia.WEB.Repositories;
+@using Barberia.Shared.Entities
 
+@inject IRepository repository
 
+<h3>Servicios</h3>
+
+<div class="mb-3">
+    <a class="btn btn-primary" href="/countries/create">Nuevo Servicio</a>
+</div>
+
+<GenericList MyList="Servicios">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Servicio</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var servicio in Servicios!)
+                {
+                    <tr>
+                        <td>    
+                            @servicio.Cita
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
 
 @code {
+    public List<Servicio>? Servicios { get; set; }
 
+    protected async override Task OnInitializedAsync()
+    {
+        var responseHppt = await repository.Get<List<Servicio>>("/api/servicios");
+        Servicios = responseHppt.Response!;
+    }
 }
+

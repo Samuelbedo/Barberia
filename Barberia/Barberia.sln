@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Barberia.API", "Barberia.API\Barberia.API.csproj", "{DD2F3896-B1EC-46F7-95D2-A27A8A4BF9C3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Barberia.WEB", "Barberia.WEB\Barberia.WEB.csproj", "{6457BA5F-1A84-4780-A654-88D49BB7A6F6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{233F52A2-7055-4442-AE48-ACAB75B311A1} = {233F52A2-7055-4442-AE48-ACAB75B311A1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
