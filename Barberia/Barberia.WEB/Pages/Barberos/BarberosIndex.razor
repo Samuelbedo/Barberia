@@ -1,32 +1,32 @@
-﻿@page "/Facturaciones"
+﻿@page "/Barberos"
 @using Barberia.WEB.Repositories;
 @using Barberia.Shared.Entities
 
 @inject IRepository repository
 
-<h3>Facturas</h3>
+<h3>Barberos</h3>
 
 <div class="mb-3">
-    <a class="btn btn-primary" href="/facturas/create">Nueva factura</a>
+    <a class="btn btn-primary" href="/barberos/create">Barberos </a>
 </div>
 
-<GenericList MyList="Facturaciones">
+<GenericList MyList="Barberos">
 
     <Body>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Facturaciones</th>
+                    <th>Barberos</th>
                     <th></th>
 
                 </tr>
             </thead>
             <tbody>
-                @foreach (var facturacion in Facturaciones!)
+                @foreach (var barbero in Barberos!)
                 {
                     <tr>
                         <td>
-                            @facturacion.Monto
+                            @barbero.Especialidad
                         </td>
                         <td>
                             <a class="btn btn-warning">Editar</a>
@@ -43,11 +43,11 @@
 </GenericList>
 
 @code {
-    public List<Facturacion>? Facturaciones { get; set; }
+    public List<Barbero>? Barberos { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
-        var responseHppt = await repository.Get<List<Facturacion>>("/api/facturaciones");
-        Facturaciones = responseHppt.Response!;
+        var responseHppt = await repository.Get<List<Barbero>>("/api/barberoreseñas");
+        Barberos = responseHppt.Response!;
     }
 }
