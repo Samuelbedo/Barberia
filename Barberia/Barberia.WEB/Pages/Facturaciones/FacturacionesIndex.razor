@@ -1,0 +1,53 @@
+﻿@page "/Facturaciones"
+@using Barberia.WEB.Repositories;
+@using Barberia.Shared.Entities
+
+@inject IRepository repository
+
+<h3>Facturas</h3>
+
+<div class="mb-3">
+    <a class="btn btn-primary" href="/countries/create">Nueva factura</a>
+</div>
+
+<GenericList MyList="Facturaciones">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Facturaciones</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var facturacion in Facturaciones!)
+                {
+                    <tr>
+                        <td>
+                            @facturacion.Monto
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+    public List<Facturacion>? Facturaciones { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        var responseHppt = await repository.Get<List<Facturacion>>("/api/facturaciones");
+        Facturaciones = responseHppt.Response!;
+    }
+}
