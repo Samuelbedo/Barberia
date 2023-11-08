@@ -26,6 +26,7 @@
                 {
                     <tr>
                         <td>
+                            @barbero.Nombre
                             @barbero.Especialidad
                         </td>
                         <td>
@@ -47,7 +48,7 @@
 
     protected async override Task OnInitializedAsync()
     {
-        var responseHppt = await repository.Get<List<Barbero>>("/api/barberoreseñas");
+        var responseHppt = await repository.Get<List<Barbero>>("/api/barberos");
         Barberos = responseHppt.Response!;
     }
 }
