@@ -43,7 +43,7 @@ namespace Barberia.API.Controllers
         [HttpPut]// --> update
         public async Task<IActionResult> Put(Reseña reseña)
         {
-            _context.Add(reseña);
+            _context.Update(reseña);
             await _context.SaveChangesAsync();
             return Ok(reseña);
         }
