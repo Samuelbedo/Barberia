@@ -18,7 +18,7 @@ namespace Barberia.Shared.Entities
         public float Precio { get; set; }//el precio del servicio lo proporciona una lista
 
         [JsonIgnore]
-        public int CitaId { get; set; }//clave foranea cita
+        public int? CitaId { get; set; }//clave foranea cita
         [JsonIgnore]
         public Cita Cita { get; set; }//una cita
     }
