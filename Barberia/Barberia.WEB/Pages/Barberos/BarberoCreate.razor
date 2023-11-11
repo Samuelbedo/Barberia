@@ -1,0 +1,40 @@
+﻿@page "/barberos/create"
+@using Barberia.Shared.Entities;
+@using Barberia.WEB.Repositories;
+@inject IRepository repository
+@inject NavigationManager navigationManager
+@inject SweetAlertService sweetAlertService
+
+<h3>Agregar Barbero</h3>
+
+<BarberoForm @ref="barberoForm" Barbero="barbero" OnSubmit="Create" ReturnAction="Return" />
+
+@code {
+    private Barbero barbero = new();
+
+    private BarberoForm? barberoForm;
+
+    private async Task Create()
+    {
+        var responseHttp = await repository.Post("/api/barberos", barbero);
+        if (responseHttp.Error)
+        {
+            var message = await responseHttp.GetErrorMessage(); //Debe ser un GetErrorMessageAsync pero no deja 
+                                                                //entonces mirar a futuro como solucionar 
+            await sweetAlertService.FireAsync("Error", message);
+
+        }
+        else //Para regresar al la lista de barberos una vez hayas añadido uno 
+        {
+            barberoForm!.FormPostedSuccessfully = true;
+            navigationManager.NavigateTo("barberos");
+
+        }
+        navigationManager.NavigateTo("/barberos");
+    }
+
+    private void Return()
+    {
+        navigationManager.NavigateTo("/barberos");
+    }
+}
