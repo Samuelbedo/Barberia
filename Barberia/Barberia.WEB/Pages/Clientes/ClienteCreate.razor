@@ -1,0 +1,40 @@
+﻿@page "/clientes/create"
+@using Barberia.Shared.Entities;
+@using Barberia.WEB.Repositories;
+@inject IRepository repository
+@inject NavigationManager navigationManager
+@inject SweetAlertService sweetAlertService
+
+<h3>Agregar cliente</h3>
+
+<ClienteForm @ref="clienteForm" Cliente="cliente" OnSubmit="Create" ReturnAction="Return" />
+
+@code {
+    private Cliente cliente = new();
+
+    private ClienteForm? clienteForm;
+
+    private async Task Create()
+    {
+        var responseHttp = await repository.Post("/api/clientes", cliente);
+        if (responseHttp.Error)
+        {
+            var message = await responseHttp.GetErrorMessage(); //Debe ser un GetErrorMessageAsync pero no deja
+                                                                //entonces mirar a futuro como solucionar
+            await sweetAlertService.FireAsync("Error", message);
+
+        }
+        else //Para regresar al la lista de clientes una vez hayas añadido uno
+        {
+            clienteForm!.FormPostedSuccessfully = true;
+            navigationManager.NavigateTo("clientes");
+
+        }
+        navigationManager.NavigateTo("/clientes");
+    }
+
+    private void Return()
+    {
+        navigationManager.NavigateTo("/clientes");
+    }
+}
