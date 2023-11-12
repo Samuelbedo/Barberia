@@ -16,14 +16,44 @@ namespace Barberia.API.Controllers
             _context = context;
         }
 
-        //Lista de barberos
+        //Insertar
+        [HttpPost]
+        public async Task<ActionResult> Post(Barbero barbero)
+        {
+            try
+            {
+
+                _context.Add(barbero);
+                await _context.SaveChangesAsync();//guardar la tabla de barberos
+                return Ok(barbero);
+            }
+
+            catch (DbUpdateException dbUpdateException)
+            {
+                if (dbUpdateException.InnerException!.Message.Contains("duplicate"))
+                {
+                    return BadRequest("Ya existe un barbero con el mismo nombre.");
+                }
+                else
+                {
+                    return BadRequest(dbUpdateException.InnerException.Message);
+                }
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
+        }
+
+
+        //Lista
         [HttpGet]
         public async Task<ActionResult> Get()
         {
             return Ok(await _context.Barberos.ToListAsync());
         }
 
-        //Get por parametro
+        //Lista por parametro
         [HttpGet("{Id=id}")]
         public async Task<ActionResult> Get(int Id)
         {
@@ -35,27 +65,40 @@ namespace Barberia.API.Controllers
             return Ok(barbero);
         }
 
-        [HttpPost]//insertar registros
-        public async Task<ActionResult> Post(Barbero barbero)
-        {
-            _context.Add(barbero);
-            await _context.SaveChangesAsync();//guardar la tabla de barberos
-            return Ok(barbero);
-        }
-
-        [HttpPut]//update
+        //Actualizar
+        [HttpPut]
         public async Task<ActionResult> Put(Barbero barbero)
         {
-            _context.Update(barbero);
-            await _context.SaveChangesAsync();
-            return Ok(barbero);
+            try
+            {
+                _context.Update(barbero);
+                await _context.SaveChangesAsync();
+                return Ok(barbero);
+            }
+            catch (DbUpdateException dbUpdateException)
+            {
+                if (dbUpdateException.InnerException!.Message.Contains("duplicate"))
+                {
+                    return BadRequest("Ya existe un registro con el mismo nombre.");
+                }
+                else
+                {
+                    return BadRequest(dbUpdateException.InnerException.Message);
+                }
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
 
+
+        //Borrar
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
             var FilaAfectada = await _context.Barberos.Where(b => b.Id == id).ExecuteDeleteAsync();
-            if(FilaAfectada == 0)
+            if (FilaAfectada == 0)
             {
                 return NotFound();
             }
