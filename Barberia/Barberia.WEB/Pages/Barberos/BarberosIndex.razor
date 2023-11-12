@@ -7,11 +7,11 @@
 @inject SweetAlertService swal
 
 
-<h3>Barberos</h3>
+<h2>Nuestros barberos</h2>
 
 
 <div class="mb-3">
-    <a class="btn btn-primary" href="/barberos/create">Barberos</a>
+    <a class="btn btn-primary" href="/barberos/create">Añadir barbero</a>
 </div>
 
 <GenericList MyList="Barberos">
@@ -20,10 +20,12 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Barberos</th>
-                    <th></th>
 
+                    <th>Nombres</th> 
+                    <th>Especialidad</th>
+                    <th>Teléfono</th>
                 </tr>
+
             </thead>
             <tbody>
                 @foreach (var barbero in Barberos!)
@@ -31,7 +33,12 @@
                     <tr>
                         <td>
                             @barbero.Nombre
+                        </td>
+                         <td>
                             @barbero.Especialidad
+                        </td>
+                        <td>
+                            @barbero.Telefono
                         </td>
                         <td>
                             <a href="/barberos/edit/@barbero.Id" class="btn btn-warning">Editar</a>
