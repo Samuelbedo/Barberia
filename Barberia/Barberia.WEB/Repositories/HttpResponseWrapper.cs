@@ -1,6 +1,5 @@
 ﻿using System.Net;
 
-
 namespace Barberia.WEB.Repositories
 {
     public class HttpResponseWrapper<T>

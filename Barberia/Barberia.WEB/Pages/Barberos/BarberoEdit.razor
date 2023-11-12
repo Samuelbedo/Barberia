@@ -1,0 +1,70 @@
+﻿@page "/barberos/edit/{Id:int}"
+@using Barberia.Shared.Entities;
+@using Barberia.WEB.Repositories;
+@inject NavigationManager navigationManager
+@inject IRepository repository
+@inject SweetAlertService swal
+
+<h3>Editar barbero</h3>
+
+@if (barbero is null)
+{
+    <div class="align-items-center">
+        <img src=" https://img.pikbest.com/png-images/20190918/cartoon-snail-loading-loading-gif-animation_2734139.png!bw700 " />
+    </div>
+}
+else
+{
+    <BarberoForm @ref="barberoForm" Barbero="barbero" OnSubmit="Edit" ReturnAction="Return" />
+}
+
+@code {
+    private Barbero? barbero;
+    private BarberoForm? barberoForm;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var responseHTTP = await repository.Get<Barbero>($"api/barberos/{Id}");
+
+        if (responseHTTP.Error)
+        {
+            if (responseHTTP.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                navigationManager.NavigateTo("barberos");
+            }
+            else
+            {
+                var messageError = await responseHTTP.GetErrorMessage(); //debe ser Async
+                await swal.FireAsync("Error", messageError, SweetAlertIcon.Error);
+            }
+        }
+        else
+        {
+            barbero = responseHTTP.Response;
+        }
+    }
+
+    private async Task Edit()
+    {
+        var responseHTTP = await repository.Put("api/barberos", barbero);
+
+        if (responseHTTP.Error)
+        {
+            var mensajeError = await responseHTTP.GetErrorMessage(); //debe ser Async
+            await swal.FireAsync("Error", mensajeError, SweetAlertIcon.Error);
+        }
+        else
+        {
+            barberoForm!.FormPostedSuccessfully = true;
+            navigationManager.NavigateTo("barberos");
+        }
+    }
+
+    private void Return()
+    {
+        navigationManager.NavigateTo("barberos");
+    }
+}

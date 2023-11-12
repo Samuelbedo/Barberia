@@ -1,6 +1,7 @@
 using Barberia.WEB;
 using Barberia.WEB.Repositories;
 using CurrieTechnologies.Razor.SweetAlert2;
+using Market.WEB.Repositories;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
