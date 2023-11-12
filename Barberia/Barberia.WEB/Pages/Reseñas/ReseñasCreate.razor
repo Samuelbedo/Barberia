@@ -1,0 +1,40 @@
+﻿@page "/reseñas/create"
+@using Barberia.Shared.Entities;
+@using Barberia.WEB.Repositories;
+@inject IRepository repository
+@inject NavigationManager navigationManager
+@inject SweetAlertService sweetAlertService
+
+<h3>Crear reseña</h3>
+
+<ReseñasForm @ref="reseñaForm" Reseña="reseña" OnSubmit="Create" ReturnAction="Return" />
+
+@code {
+    private Reseña reseña = new();
+
+    private ReseñasForm? reseñaForm;
+
+    private async Task Create()
+    {
+        var responseHttp = await repository.Post("/api/reseñas", reseña);
+        if (responseHttp.Error)
+        {
+            var message = await responseHttp.GetErrorMessage(); //Todo: Debe ser un GetErrorMessageAsync pero no deja
+                                                                //entonces mirar a futuro como solucionar
+            await sweetAlertService.FireAsync("Error", message);
+
+        }
+        else //Para regresar al la lista de reseñas una vez hayas añadido uno
+        {
+            reseñaForm!.FormPostedSuccessfully = true;
+            navigationManager.NavigateTo("reseñas");
+
+        }
+        navigationManager.NavigateTo("/reseñas");
+    }
+
+    private void Return()
+    {
+        navigationManager.NavigateTo("/reseñas");
+    }
+}
