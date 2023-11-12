@@ -1,0 +1,40 @@
+﻿@page "/facturaciones/create"
+@using Barberia.Shared.Entities;
+@using Barberia.WEB.Repositories;
+@inject IRepository repository
+@inject NavigationManager navigationManager
+@inject SweetAlertService sweetAlertService
+
+<h3>Crear Recibo</h3>
+
+<FacturacionesForm @ref="facturacionesForm" Facturacion="facturacion" OnSubmit="Create" ReturnAction="Return" />
+
+@code {
+    private Facturacion facturacion = new();
+
+    private FacturacionesForm? facturacionesForm;
+
+    private async Task Create()
+    {
+        var responseHttp = await repository.Post("/api/facturaciones", facturacion);
+        if (responseHttp.Error)
+        {
+            var message = await responseHttp.GetErrorMessage(); //Debe ser un GetErrorMessageAsync pero no deja
+                                                                //entonces mirar a futuro como solucionar
+            await sweetAlertService.FireAsync("Error", message);
+
+        }
+        else //Para regresar al la lista de facturaciones una vez hayas añadido uno
+        {
+            facturacionesForm!.FormPostedSuccessfully = true;
+            navigationManager.NavigateTo("facturaciones");
+
+        }
+        navigationManager.NavigateTo("/facturaciones");
+    }
+
+    private void Return()
+    {
+        navigationManager.NavigateTo("/facturaciones");
+    }
+}

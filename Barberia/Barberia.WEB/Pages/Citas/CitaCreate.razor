@@ -5,7 +5,7 @@
 @inject NavigationManager navigationManager
 @inject SweetAlertService sweetAlertService
 
-<h3>Agendar ita</h3>
+<h3>Agendar cita</h3>
 
 <CitaForm @ref="citaForm" Cita="cita" OnSubmit="Create" ReturnAction="Return"/>
 
@@ -19,12 +19,12 @@
         var responseHttp = await repository.Post("/api/citas", cita);
         if (responseHttp.Error)
         {
-            var message = await responseHttp.GetErrorMessage(); //Debe ser un GetErrorMessageAsync pero no deja
+            var message = await responseHttp.GetErrorMessage(); //Todo: Debe ser un GetErrorMessageAsync pero no deja
                                                                 //entonces mirar a futuro como solucionar
             await sweetAlertService.FireAsync("Error", message);
 
         }
-        else //Para regresar al la lista de barberos una vez hayas añadido uno
+        else //Para regresar al la lista de citas una vez hayas añadido uno
         {
             citaForm!.FormPostedSuccessfully = true;
             navigationManager.NavigateTo("citas");
