@@ -3,12 +3,28 @@
 
 <NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation"></NavigationLock>
 <EditForm EditContext="editContext" OnSubmit="OnSubmit">
-    <DataAnnotationsValidator/>    
+    <DataAnnotationsValidator/>     
     <div class="mb-3">
-        <label>Barbero:</label>
+        <label>Nombre:</label>
         <div>
             <InputText class="form-control" @bind-Value="@Barbero.Nombre" />
             <ValidationMessage For="@(() => Barbero.Nombre)" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label>Especialidad:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Barbero.Especialidad" />
+            <ValidationMessage For="@(() => Barbero.Especialidad)" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label>Numero Telefonico:</label>
+        <div>
+            <InputNumber class="form-control" @bind-Value="@Barbero.Telefono" />
+            <ValidationMessage For="@(() => Barbero.Telefono)" />
         </div>
     </div>
 
