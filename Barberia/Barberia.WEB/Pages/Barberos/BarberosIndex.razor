@@ -11,7 +11,7 @@
 
 
 <div class="mb-3">
-    <a class="btn btn-primary" href="/barberos/create">Añadir barbero</a>
+    <a class="btn btn-outline-dark" href="/barberos/create">Añadir barbero</a>
 </div>
 
 <GenericList MyList="Barberos">
@@ -41,8 +41,8 @@
                             @barbero.Telefono
                         </td>
                         <td>
-                            <a href="/barberos/edit/@barbero.Id" class="btn btn-warning">Editar</a>
-                            <button class="btn btn-danger" @onclick=@(() => Delete(barbero))>Borrar</button>
+                            <a href="/barberos/edit/@barbero.Id" class="btn btn-outline-secondary">Editar</a>
+                            <button class="btn btn-outline-danger" @onclick=@(() => Delete(barbero))>Borrar</button>
                         </td>
 
                     </tr>

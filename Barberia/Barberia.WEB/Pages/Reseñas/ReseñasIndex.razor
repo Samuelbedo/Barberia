@@ -9,7 +9,7 @@
 <h3>Reseñas</h3>
 
 <div class="mb-3">
-    <a class="btn btn-primary" href="/reseñas/create">Añadir reseña</a>
+    <a class="btn btn-outline-dark" href="/reseñas/create">Añadir reseña</a>
 </div>
 
 <GenericList MyList="Reseñas">
@@ -33,8 +33,8 @@
                             @reseña.Calificacion
                         </td>
                         <td>
-                            <a href="/reseñas/edit/@reseña.Id" class="btn btn-warning">Editar</a>
-                            <button class="btn btn-danger" @onclick=@(() => Delete(reseña))>Borrar</button>
+                            <a href="/reseñas/edit/@reseña.Id" class="btn btn-outline-secondary">Editar</a>
+                            <button class="btn btn-outline-danger" @onclick=@(() => Delete(reseña))>Borrar</button>
                         </td>
 
                     </tr>

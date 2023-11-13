@@ -11,7 +11,7 @@
 
 
 <div class="mb-3">
-    <a class="btn btn-primary" href="/servicios/create">Añadir servicio</a>
+    <a class="btn btn-outline-dark" href="/servicios/create">Añadir servicio</a>
 </div>
 
 <GenericList MyList="Servicios">
@@ -36,8 +36,8 @@
                             @servicio.Precio
                         </td>
                         <td>
-                            <a href="/servicios/edit/@servicio.Id" class="btn btn-warning">Editar</a>
-                            <button class="btn btn-danger" @onclick=@(() => Delete(servicio))>Borrar</button>
+                            <a href="/servicios/edit/@servicio.Id" class="btn btn-outline-secondary">Editar</a>
+                            <button class="btn btn-outline-danger" @onclick=@(() => Delete(servicio))>Borrar</button>
                         </td>
 
                     </tr>

@@ -9,7 +9,7 @@
 <h3>Registro de caja</h3>
 
 <div class="mb-3">
-    <a class="btn btn-primary" href="/facturaciones/create">Añadir pago</a>
+    <a class="btn btn-outline-dark" href="/facturaciones/create">Añadir pago</a>
 </div>
 
 <GenericList MyList="Facturaciones">
@@ -37,7 +37,7 @@
                             @facturacion.MetodoPago
                         </td>
                         <td>
-                            <button class="btn btn-danger" @onclick=@(() => Delete(facturacion))>Borrar</button>
+                            <button class="btn btn-outline-danger" @onclick=@(() => Delete(facturacion))>Borrar</button>
                         </td>
 
                     </tr>

@@ -9,7 +9,7 @@
 <h2>Citas agendadas</h2>
 
 <div class="mb-3">
-    <a class="btn btn-primary" href="/citas/create">Añadir cita</a>
+    <a class="btn btn-outline-dark" href="/citas/create">Añadir cita</a>
 </div>
 
 <GenericList MyList="Citas">
@@ -39,8 +39,8 @@
                             @cita.Tipo
                         </td>
                         <td>
-                            <a href="/citas/edit/@cita.Id" class="btn btn-warning">Editar</a>
-                            <button class="btn btn-danger" @onclick=@(() => Delete(cita))>Borrar</button>
+                            <a href="/citas/edit/@cita.Id" class="btn btn-outline-secondary">Editar</a>
+                            <button class="btn btn-outline-danger" @onclick=@(() => Delete(cita))>Borrar</button>
                         </td>
 
                     </tr>
