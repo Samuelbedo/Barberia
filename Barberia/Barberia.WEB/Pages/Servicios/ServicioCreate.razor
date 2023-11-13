@@ -1,0 +1,40 @@
+﻿@page "/servicio/create"
+@using Barberia.Shared.Entities;
+@using Barberia.WEB.Repositories;
+@inject IRepository repository
+@inject NavigationManager navigationManager
+@inject SweetAlertService sweetAlertService
+
+<h3>Agregar Servicio</h3>
+
+<ServicioForm @ref="servicioForm" Servicio="servicio" OnSubmit="Create" ReturnAction="Return" />
+
+@code {
+
+    private Servicio servicio = new();
+    private ServicioForm? servicioForm;
+
+    private async Task Create()
+    {
+        var responseHttp = await repository.Post("/api/servicios", servicio);
+        if (responseHttp.Error)
+        {
+            var message = await responseHttp.GetErrorMessage(); //Debe ser un GetErrorMessageAsync pero no deja
+                                                                //entonces mirar a futuro como solucionar
+            await sweetAlertService.FireAsync("Error", message);
+
+        }
+        else //Para regresar al la lista de servicios una vez hayas añadido uno
+        {
+            servicioForm!.FormPostedSuccessfully = true;
+            navigationManager.NavigateTo("servicios");
+
+        }
+        navigationManager.NavigateTo("/servicios");
+    }
+
+    private void Return()
+    {
+        navigationManager.NavigateTo("/servicios");
+    }
+}

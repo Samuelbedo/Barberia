@@ -1,0 +1,70 @@
+﻿@page "/servicios/edit/{Id:int}"
+@using Barberia.Shared.Entities;
+@using Barberia.WEB.Repositories;
+@inject NavigationManager navigationManager
+@inject IRepository repository
+@inject SweetAlertService swal
+
+<h3>Editar Servicio</h3>
+
+@if (servicio is null)
+{
+    <div class="align-items-center">
+        <img src=" https://media.tenor.com/SLtGVtSI1EkAAAAC/barber-barberia.gif " />
+    </div>
+}
+else
+{
+    <ServicioForm @ref="servicioForm" Servicio="servicio" OnSubmit="Edit" ReturnAction="Return" />
+}
+
+@code {
+    private Servicio? servicio;
+    private ServicioForm? servicioForm;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var responseHTTP = await repository.Get<Servicio>($"api/servicios/{Id}");
+
+        if (responseHTTP.Error)
+        {
+            if (responseHTTP.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                navigationManager.NavigateTo("servicios");
+            }
+            else
+            {
+                var messageError = await responseHTTP.GetErrorMessage(); //debe ser Async
+                await swal.FireAsync("Error", messageError, SweetAlertIcon.Error);
+            }
+        }
+        else
+        {
+            servicio = responseHTTP.Response;
+        }
+    }
+
+    private async Task Edit()
+    {
+        var responseHTTP = await repository.Put("api/servicios", servicio);
+
+        if (responseHTTP.Error)
+        {
+            var mensajeError = await responseHTTP.GetErrorMessage(); //debe ser Async
+            await swal.FireAsync("Error", mensajeError, SweetAlertIcon.Error);
+        }
+        else
+        {
+            servicioForm!.FormPostedSuccessfully = true;
+            navigationManager.NavigateTo("servicios");
+        }
+    }
+
+    private void Return()
+    {
+        navigationManager.NavigateTo("servicios");
+    }
+}
