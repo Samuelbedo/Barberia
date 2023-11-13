@@ -6,7 +6,7 @@
     <DataAnnotationsValidator />
 
     <div class="mb-3">
-        <label>Fecha de pago:</label>
+        <label>Fecha:</label>
         <div>
             <InputText class="form-control" @bind-Value="@Facturacion.Fecha" />
             <ValidationMessage For="@(() => Facturacion.Fecha)" />
@@ -17,12 +17,12 @@
         <label>Monto:</label>
         <div>
             <InputNumber class="form-control" @bind-Value="@Facturacion.Monto" />
-            <ValidationMessage For="@(() => Facturacion.Monto)" />ws
+            <ValidationMessage For="@(() => Facturacion.Monto)" />
         </div>
     </div>
 
     <div class="mb-3">
-        <label>Metodo de pago:</label>
+        <label>Método de pago:</label>
         <div>
             <InputText class="form-control" @bind-Value="@Facturacion.MetodoPago" />
             <ValidationMessage For="@(() => Facturacion.MetodoPago)" />

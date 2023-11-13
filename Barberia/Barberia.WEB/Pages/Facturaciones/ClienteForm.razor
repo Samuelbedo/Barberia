@@ -4,20 +4,27 @@
 <NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation"></NavigationLock>
 <EditForm EditContext="editContext" OnSubmit="OnSubmit">
     <DataAnnotationsValidator />
-
-    <div class="mb-3">  
-        <label>Comentario:</label>
+    <div class="mb-3">
+        <label>Nombre:</label>
         <div>
-            <InputText class="form-control" @bind-Value="@Reseña.Comentario" />
-            <ValidationMessage For="@(() => Reseña.Comentario)" />
+            <InputText class="form-control" @bind-Value="@Cliente.Nombre" />
+            <ValidationMessage For="@(() => Cliente.Nombre)" />
         </div>
     </div>
 
     <div class="mb-3">
-        <label>Calificación:</label>
+        <label>Teléfono:</label>
         <div>
-            <InputText class="form-control" @bind-Value="@Reseña.Calificacion" />
-            <ValidationMessage For="@(() => Reseña.Calificacion)" /> De 0 a 10 estrellas
+            <InputNumber class="form-control" @bind-Value="@Cliente.Telefono" />
+            <ValidationMessage For="@(() => Cliente.Telefono)" />
+        </div>  
+    </div>
+
+    <div class="mb-3">
+        <label>Dirección:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Cliente.Direccion" />
+            <ValidationMessage For="@(() => Cliente.Direccion)" />
         </div>
     </div>
 
@@ -27,17 +34,19 @@
 
 @code {
 
+
     private EditContext editContext = null!;
 
     protected override void OnInitialized()
     {
-        editContext = new(Reseña);
+        editContext = new(Cliente);
 
     }
 
+
     [EditorRequired]
     [Parameter]
-    public Reseña Reseña { get; set; } = null!;
+    public Cliente Cliente { get; set; } = null!;
 
     [EditorRequired]
     [Parameter]

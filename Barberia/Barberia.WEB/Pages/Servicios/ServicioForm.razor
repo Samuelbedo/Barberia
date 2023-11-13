@@ -5,7 +5,7 @@
 <EditForm EditContext="editContext" OnSubmit="OnSubmit">
     <DataAnnotationsValidator/>
     <div class="mb-3">
-        <label>Descripcion:</label>
+        <label>Descripción:</label>
         <div>
             <InputText class="form-control" @bind-Value="@Servicio.Descripcion" />
             <ValidationMessage For="@(() => Servicio.Descripcion)" />
