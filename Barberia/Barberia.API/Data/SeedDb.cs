@@ -16,7 +16,6 @@ namespace Barberia.API.Data
         {
             await _context.Database.EnsureCreatedAsync();
             await CheckBarberosAsync();
-            await CheckClientesAsync();
         }
 
         private async Task CheckBarberosAsync()
@@ -30,20 +29,6 @@ namespace Barberia.API.Data
                 _context.Barberos.Add(new Barbero { Nombre = " Aaron Manuel Florez ", Especialidad = "Cortes a tijera y barbas", Telefono = 484828 });
             }
                 
-            await _context.SaveChangesAsync();
-        }
-
-        private async Task CheckClientesAsync()
-        {
-            if (!_context.Barberos.Any())
-            {
-                _context.Clientes.Add(new Cliente { Nombre = " Mateo Padilla ", Telefono = 247814, Direccion = "Clle63B #89-54 " });
-                _context.Clientes.Add(new Cliente { Nombre = " Sebastian Morales ", Telefono = 988955, Direccion = "Cra20 #8 " });
-                _context.Clientes.Add(new Cliente { Nombre = " Walter Cortez ", Telefono = 961485, Direccion = "cll113a #63-65" });
-                _context.Clientes.Add(new Cliente { Nombre = " Valentina Galvis ", Telefono = 842567, Direccion = "Cra76 #1" });
-                _context.Clientes.Add(new Cliente { Nombre = " Sebastian Murillo ", Telefono = 914537, Direccion = "Avenida Los altos #20" });
-            }
-
             await _context.SaveChangesAsync();
         }
     }

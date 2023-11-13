@@ -1,16 +1,15 @@
-﻿@page "/servicio/create"
+﻿@page "/servicios/create"
 @using Barberia.Shared.Entities;
 @using Barberia.WEB.Repositories;
 @inject IRepository repository
 @inject NavigationManager navigationManager
 @inject SweetAlertService sweetAlertService
 
-<h3>Agregar Servicio</h3>
+<h3>Agregar servicio</h3>
 
 <ServicioForm @ref="servicioForm" Servicio="servicio" OnSubmit="Create" ReturnAction="Return" />
 
 @code {
-
     private Servicio servicio = new();
     private ServicioForm? servicioForm;
 
