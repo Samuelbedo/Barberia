@@ -1,4 +1,6 @@
-﻿using Barberia.Shared.Entities;
+﻿using Barberia.API.Helpers;
+using Barberia.Shared.Entities;
+using Barberia.Shared.Enums;
 using System.Diagnostics.Metrics;
 
 namespace Barberia.API.Data
@@ -6,10 +8,11 @@ namespace Barberia.API.Data
     public class SeedDb
     {
         private readonly DataContext _context;
-
-        public SeedDb(DataContext context)
+        private readonly IUserHelper _userHelper;
+        public SeedDb(DataContext context, IUserHelper userHelper)
         {
             _context = context;
+            _userHelper = userHelper;
         }
 
         public async Task SeedAsync()
@@ -21,7 +24,44 @@ namespace Barberia.API.Data
             await CheckCitasAsync();
             await CheckFacturacionesAsync();
             await CheckReseñasAsync();
+            await CheckRolesAsync();
+            await CheckUserAsync("1", "OAP", "OAP", "oap@yopmail.com", "300445555", "CR 78 9687", UserType.Admin);
+
         }
+
+
+        private async Task<User> CheckUserAsync(string document, string firstName, string lastName, string email, string phone, string address, UserType userType)
+        {
+            var user = await _userHelper.GetUserAsync(email);
+            if (user == null)
+            {
+                user = new User
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    UserName = email,
+                    PhoneNumber = phone,
+                    Address = address,
+                    Document = document,
+                    ClienteId = _context.Clientes.FirstOrDefault(),
+                    UserType = userType,
+                };
+
+                await _userHelper.AddUserAsync(user, "123456");
+                await _userHelper.AddUserToRoleAsync(user, userType.ToString());
+            }
+
+            return user;
+        }
+
+        private async Task CheckRolesAsync()
+        {
+            await _userHelper.CheckRoleAsync(UserType.Admin.ToString());
+            await _userHelper.CheckRoleAsync(UserType.User.ToString());
+        }
+
+
 
         private async Task CheckBarberosAsync()
         {

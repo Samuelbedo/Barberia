@@ -25,5 +25,8 @@ namespace Barberia.Shared.Entities
         public ICollection<Cita> Citas { get; set; }//muchas citas
         [JsonIgnore]
         public Facturacion Facturacion { get; set; }//una facturacion
+
+        [JsonIgnore]
+        public ICollection<User>? Users { get; set; } //usuario 
     }
 }
