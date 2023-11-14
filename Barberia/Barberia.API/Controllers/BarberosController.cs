@@ -1,4 +1,6 @@
 ﻿using Barberia.API.Data;
+using Barberia.API.Helpers;
+using Barberia.Shared.DTOs;
 using Barberia.Shared.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +17,27 @@ namespace Barberia.API.Controllers
         {
             _context = context;
         }
+
+
+       /* [HttpGet] //CODIGO PAGINACION 
+        public async Task<IActionResult> GetAsync([FromQuery] PaginationDTO pagination)
+        {
+            var queryable = _context.Barberos.Include(x => x.Nombre).Include(x => x.Especialidad).Include(x => x.Telefono).AsQueryable();
+
+            return Ok(await queryable.OrderBy(x => x.Nombre).Paginate(pagination).ToListAsync());    
+        }
+
+
+        [HttpGet("totalPages")] //CODIGO PAGINACION 
+        public async Task<ActionResult> GetPages([FromQuery] PaginationDTO pagination)
+        {
+            var queryable = _context.Barberos.AsQueryable();
+            double count = await queryable.CountAsync();
+            double totalPages = Math.Ceiling(count / pagination.RecordsNumber);
+            return Ok(totalPages);
+        } */
+
+
 
         //Insertar
         [HttpPost]
