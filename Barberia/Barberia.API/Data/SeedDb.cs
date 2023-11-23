@@ -27,6 +27,8 @@ namespace Barberia.API.Data
             await CheckReseñasAsync();
             await CheckRolesAsync();
             await CheckUserAsync("1", "OAP", "OAP", "oap@yopmail.com", "300445555", "CR 78 9687", UserType.Admin);
+            await CheckUserAsync("2", "Santiago", "Varela", "clienteLindo@yopmail.com", "123456", "CR 76 4387", UserType.Usuario);
+            await CheckUserAsync("3", "Samuel", "Bedoya", "barberoPrecioso@yopmail.com", "654321", "CR 98 4309", UserType.Barbero);
         }
 
         private async Task CheckBarberosAsync()

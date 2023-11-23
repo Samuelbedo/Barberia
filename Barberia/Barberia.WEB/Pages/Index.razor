@@ -1,5 +1,7 @@
 ﻿@page "/"
 
+
+
 <style>
     body {
         text-align: center;
@@ -33,7 +35,21 @@
 <h3>Donde tu pelo estará feliz, al igual que tu sonrisa.</h3>
 
 <br>
-<h5>Agendar una cita:</h5>
-<div class="mb-3">
-    <a class="btn btn-outline-dark" href="/citas/create">Añadir cita</a>
-</div>
+
+<AuthorizeView Roles="Usuario"><!--TODO: cambiar a cliente-->
+    <Authorized>
+        <h5>Agendar una cita:</h5>
+        <div class="mb-3">
+            <a class="btn btn-outline-dark" href="/citas/create">Añadir cita</a>
+        </div>
+    </Authorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="Admin">
+    <Authorized>
+        <p>Estas autenticado y autorizado, @context.User.Identity?.Name</p>
+    </Authorized>
+    <NotAuthorized>
+        <p>No estas autorizado</p>
+    </NotAuthorized>
+</AuthorizeView>

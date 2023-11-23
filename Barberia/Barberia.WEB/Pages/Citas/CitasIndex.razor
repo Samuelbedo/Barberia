@@ -1,16 +1,24 @@
 ﻿@page "/Citas"
 @using Barberia.WEB.Repositories;
 @using Barberia.Shared.Entities
+@using Microsoft.AspNetCore.Authorization;
 
 @inject IRepository repository
 @inject NavigationManager navigationManager
 @inject SweetAlertService swal
+@attribute [Authorize(Roles = "Admin,Usuario")]
 
 <h2>Citas agendadas</h2>
 
-<div class="mb-3">
-    <a class="btn btn-outline-dark" href="/citas/create">Añadir cita</a>
-</div>
+
+<AuthorizeView Roles="Usuario">
+<Authorized>
+    <div class="mb-3">
+        <a class="btn btn-outline-dark" href="/citas/create">Añadir cita</a>
+    </div>
+</Authorized>
+</AuthorizeView>
+
 
 <GenericList MyList="Citas">
 
@@ -38,10 +46,14 @@
                         <td>
                             @cita.Tipo
                         </td>
-                        <td>
-                            <a href="/citas/edit/@cita.Id" class="btn btn-outline-secondary">Editar</a>
-                            <button class="btn btn-outline-danger" @onclick=@(() => Delete(cita))>Borrar</button>
-                        </td>
+                        <AuthorizeView Roles="Admin">
+                        <Authorized>
+                            <td>
+                                <a href="/citas/edit/@cita.Id" class="btn btn-outline-secondary">Editar</a>
+                                <button class="btn btn-outline-danger" @onclick=@(() => Delete(cita))>Borrar</button>
+                            </td>
+                        </Authorized>
+                        </AuthorizeView>
 
                     </tr>
                 }
