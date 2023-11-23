@@ -40,7 +40,7 @@ namespace Barberia.WEB.Auth
                 authenticationType: "test");
 
 
-            return await Task.FromResult(new AuthenticationState(new ClaimsPrincipal(anonimous)));//CON OAP AUTORIZA, CON ANONIMOUS NO
+            return await Task.FromResult(new AuthenticationState(new ClaimsPrincipal(barberoUser)));//CON OAP AUTORIZA, CON ANONIMOUS NO
         }
     }
 }

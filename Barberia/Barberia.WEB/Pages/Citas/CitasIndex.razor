@@ -6,13 +6,13 @@
 @inject IRepository repository
 @inject NavigationManager navigationManager
 @inject SweetAlertService swal
-@attribute [Authorize(Roles = "Admin,Usuario")]
+@attribute [Authorize(Roles = "Admin,Usuario,Barbero")]
 
 <h2>Citas agendadas</h2>
 
 
 <AuthorizeView Roles="Usuario">
-<Authorized>
+<Authorized>    
     <div class="mb-3">
         <a class="btn btn-outline-dark" href="/citas/create">Añadir cita</a>
     </div>
@@ -46,7 +46,7 @@
                         <td>
                             @cita.Tipo
                         </td>
-                        <AuthorizeView Roles="Admin">
+                        <AuthorizeView Roles="Admin,Barbero">
                         <Authorized>
                             <td>
                                 <a href="/citas/edit/@cita.Id" class="btn btn-outline-secondary">Editar</a>
