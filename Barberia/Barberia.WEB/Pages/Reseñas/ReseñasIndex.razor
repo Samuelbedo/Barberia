@@ -1,16 +1,23 @@
 ﻿@page "/Reseñas"
 @using Barberia.WEB.Repositories;
 @using Barberia.Shared.Entities
+@using Microsoft.AspNetCore.Authorization;
 
 @inject IRepository repository
 @inject NavigationManager navigationManager
 @inject SweetAlertService swal
+@attribute [Authorize(Roles = "Admin,Usuario,Barbero")]
 
 <h3>Reseñas</h3>
 
-<div class="mb-3">
-    <a class="btn btn-outline-dark" href="/reseñas/create">Añadir reseña</a>
-</div>
+
+<AuthorizeView Roles="Usuario">
+    <Authorized>
+        <div class="mb-3">
+            <a class="btn btn-outline-dark" href="/reseñas/create">Añadir reseña</a>
+        </div>
+    </Authorized>
+</AuthorizeView>
 
 <GenericList MyList="Reseñas">
 
@@ -32,11 +39,14 @@
                         <td>
                             @reseña.Calificacion
                         </td>
-                        <td>
-                            <a href="/reseñas/edit/@reseña.Id" class="btn btn-outline-secondary">Editar</a>
-                            <button class="btn btn-outline-danger" @onclick=@(() => Delete(reseña))>Borrar</button>
-                        </td>
-
+                        <AuthorizeView Roles="Usuario">
+                            <Authorized>
+                                <td>
+                                    <a href="/reseñas/edit/@reseña.Id" class="btn btn-outline-secondary">Editar</a>
+                                    <button class="btn btn-outline-danger" @onclick=@(() => Delete(reseña))>Borrar</button>
+                                </td>
+                            </Authorized>
+                        </AuthorizeView>
                     </tr>
                 }
             </tbody>

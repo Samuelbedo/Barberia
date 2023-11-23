@@ -1,9 +1,12 @@
 ﻿@page "/reseñas/edit/{Id:int}"
 @using Barberia.Shared.Entities;
 @using Barberia.WEB.Repositories;
+@using Microsoft.AspNetCore.Authorization;
+
 @inject NavigationManager navigationManager
 @inject IRepository repository
 @inject SweetAlertService swal
+@attribute [Authorize(Roles = "Usuario")]
 
 
 <h3>Editar reseña</h3>

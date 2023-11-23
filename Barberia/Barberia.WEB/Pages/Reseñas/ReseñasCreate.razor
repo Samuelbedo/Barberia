@@ -1,9 +1,12 @@
 ﻿@page "/reseñas/create"
 @using Barberia.Shared.Entities;
 @using Barberia.WEB.Repositories;
+@using Microsoft.AspNetCore.Authorization;
+
 @inject IRepository repository
 @inject NavigationManager navigationManager
 @inject SweetAlertService sweetAlertService
+@attribute [Authorize(Roles = "Usuario")]
 
 <h3>Nueva reseña</h3>
 
