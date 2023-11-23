@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Barberia.API.Data;
 using Barberia.Shared.Entities;
+using Barberia.Shared.DTOs;
 
 namespace Barberia.API.Helpers
 {
@@ -13,11 +14,14 @@ namespace Barberia.API.Helpers
 
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserHelper(DataContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        private readonly SignInManager<User> _signInManager;
+
+        public UserHelper(DataContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
         }
 
         public async Task<IdentityResult> AddUserAsync(User user, string password)
@@ -51,6 +55,16 @@ namespace Barberia.API.Helpers
         public async Task<bool> IsUserInRoleAsync(User user, string roleName)
         {
             return await _userManager.IsInRoleAsync(user, roleName);
+        }
+
+        public async Task<SignInResult> LoginAsync(LoginDTO model)
+        {
+            return await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+        }
+
+        public async Task LogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
         }
     }
 }

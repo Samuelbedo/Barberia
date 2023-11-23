@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Barberia.Shared.Entities;
+using Barberia.Shared.DTOs;
 
 namespace Barberia.API.Helpers
 {
@@ -14,5 +15,10 @@ namespace Barberia.API.Helpers
         Task AddUserToRoleAsync(User user, string roleName);
 
         Task<bool> IsUserInRoleAsync(User user, string roleName);
+
+        Task<SignInResult> LoginAsync(LoginDTO model);
+
+        Task LogoutAsync();
+
     }
 }
