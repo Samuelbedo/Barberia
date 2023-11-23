@@ -1,18 +1,22 @@
 ﻿@page "/Clientes"
 @using Barberia.WEB.Repositories;
 @using Barberia.Shared.Entities
+@using Microsoft.AspNetCore.Authorization;
 
 @inject IRepository repository
 @inject NavigationManager navigationManager
 @inject SweetAlertService swal
-
+@attribute [Authorize(Roles = "Admin,Barbero")]
 
 <h2>Nuestros clientes</h2>
 
-
-<div class="mb-3">
-    <a class="btn btn-outline-dark" href="/clientes/create">Añadir cliente</a>
-</div>
+<AuthorizeView Roles="Admin">
+    <Authorized>    
+        <div class="mb-3">
+            <a class="btn btn-outline-dark" href="/clientes/create">Añadir cliente</a>
+        </div>
+    </Authorized>
+</AuthorizeView>
 
 <GenericList MyList="Clientes">
 
@@ -40,11 +44,14 @@
                         <td>
                             @cliente.Direccion
                         </td>
-                        <td>
-                            <a href="/clientes/edit/@cliente.Id" class="btn btn-outline-secondary">Editar</a>
-                            <button class="btn btn-outline-danger" @onclick=@(() => Delete(cliente))>Borrar</button>
-                        </td>
-
+                        <AuthorizeView Roles="Admin">
+                            <Authorized>  
+                                <td>
+                                    <a href="/clientes/edit/@cliente.Id" class="btn btn-outline-secondary">Editar</a>
+                                    <button class="btn btn-outline-danger" @onclick=@(() => Delete(cliente))>Borrar</button>
+                                </td>
+                            </Authorized>
+                        </AuthorizeView>
                     </tr>
                 }
             </tbody>
