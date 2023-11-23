@@ -16,40 +16,66 @@
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
-        <AuthorizeView Roles="Admin,Usuario">
-        <Authorized>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="citas">
-                <span class="oi oi-task" aria-hidden="true"></span> Citas
-                </NavLink>
+        <AuthorizeView Roles="Admin,Usuario,Barbero">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="citas">
+                        <span class="oi oi-task" aria-hidden="true"></span> Citas
+                    </NavLink>
             </div>
-        </Authorized>
+            </Authorized>
         </AuthorizeView>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="barberos">
-                <span class="oi oi-person" aria-hidden="true"></span> Barberos
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="servicios">
-                <span class="oi oi-check" aria-hidden="true"></span> Servicios
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="clientes">
-                <span class="oi oi-star" aria-hidden="true"></span> Clientes
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="facturaciones">
-                <span class="oi oi-dollar" aria-hidden="true"></span> Facturaciones
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="reseñas">
-                <span class="oi oi-thumb-up" aria-hidden="true"></span> Reseñas
-            </NavLink>
-        </div>
+
+        <AuthorizeView Roles="Admin,Usuario,Barbero">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="barberos">
+                        <span class="oi oi-person" aria-hidden="true"></span> Barberos
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+
+        <AuthorizeView Roles="Admin,Usuario,Barbero">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="servicios">
+                        <span class="oi oi-check" aria-hidden="true"></span> Servicios
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+
+        <AuthorizeView Roles="Admin,Barbero">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="clientes">
+                        <span class="oi oi-star" aria-hidden="true"></span> Clientes
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+
+        <AuthorizeView Roles="Admin,Barbero">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="facturaciones">
+                        <span class="oi oi-dollar" aria-hidden="true"></span> Facturaciones
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+
+        <AuthorizeView Roles="Admin,Usuario,Barbero">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="reseñas">
+                        <span class="oi oi-thumb-up" aria-hidden="true"></span> Reseñas
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+
       <!--  <div class="nav-item px-3">
             <NavLink class="nav-link" href="fetchdata">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
