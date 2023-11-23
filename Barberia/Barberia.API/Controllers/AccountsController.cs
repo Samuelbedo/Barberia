@@ -27,7 +27,7 @@ namespace Barberia.API.Controllers
         [HttpPost("CreateUser")]
         public async Task<ActionResult> CreateUser([FromBody] UserDTO model)
         {
-            User user = new User(model);
+           User user = model;
 
             var result = await _userHelper.AddUserAsync(user, model.Password);
 

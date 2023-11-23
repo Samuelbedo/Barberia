@@ -40,12 +40,5 @@ namespace Barberia.Shared.Entities
 
         [Display(Name = "Usuario")]
         public string FullName => $"{FirstName} {LastName}";
-
-        public User(UserDTO userDTO) : base() // Llamar al constructor de la clase base
-        {
-            // Copiar las propiedades relevantes desde UserDTO a User
-            this.Document = userDTO.Password;
-            this.FirstName = userDTO.PasswordConfirm;
-        }
     }
 }

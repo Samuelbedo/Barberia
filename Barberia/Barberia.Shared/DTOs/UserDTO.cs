@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace Barberia.Shared.DTOs
 {
-    public class UserDTO
+    public class UserDTO : User
     {
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
