@@ -1,9 +1,12 @@
 ﻿@page "/facturaciones/create"
 @using Barberia.Shared.Entities;
 @using Barberia.WEB.Repositories;
+@using Microsoft.AspNetCore.Authorization;
+
 @inject IRepository repository
 @inject NavigationManager navigationManager
 @inject SweetAlertService sweetAlertService
+@attribute [Authorize(Roles = "Admin,Barbero")]
 
 <h3>Nuevo recibo</h3>
 

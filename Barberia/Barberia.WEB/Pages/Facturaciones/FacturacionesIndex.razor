@@ -1,16 +1,22 @@
 ﻿@page "/Facturaciones"
 @using Barberia.WEB.Repositories;
 @using Barberia.Shared.Entities
+@using Microsoft.AspNetCore.Authorization;
 
 @inject IRepository repository
 @inject NavigationManager navigationManager
 @inject SweetAlertService swal
+@attribute [Authorize(Roles = "Admin,Usuario,Barbero")]
 
 <h3>Registro de caja</h3>
 
-<div class="mb-3">
-    <a class="btn btn-outline-dark" href="/facturaciones/create">Añadir pago</a>
-</div>
+<AuthorizeView Roles="Admin,Barbero">
+    <Authorized>
+        <div class="mb-3">
+            <a class="btn btn-outline-dark" href="/facturaciones/create">Añadir pago</a>
+        </div>
+    </Authorized>
+</AuthorizeView>
 
 <GenericList MyList="Facturaciones">
 
@@ -36,10 +42,13 @@
                         <td>
                             @facturacion.MetodoPago
                         </td>
-                        <td>
-                            <button class="btn btn-outline-danger" @onclick=@(() => Delete(facturacion))>Borrar</button>
-                        </td>
-
+                        <AuthorizeView Roles="Admin">
+                            <Authorized>
+                                <td>
+                                    <button class="btn btn-outline-danger" @onclick=@(() => Delete(facturacion))>Borrar</button>
+                                </td>
+                            </Authorized>
+                        </AuthorizeView>
                     </tr>
                 }
             </tbody>
