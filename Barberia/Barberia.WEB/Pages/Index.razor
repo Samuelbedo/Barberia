@@ -36,7 +36,7 @@
 
 <br>
 
-<AuthorizeView Roles="Usuario"><!--TODO: cambiar a cliente-->
+<AuthorizeView Roles="Usuario">
     <Authorized>
         <h5>Agendar una cita:</h5>
         <div class="mb-3">
@@ -45,7 +45,7 @@
     </Authorized>
 </AuthorizeView>
 
-<AuthorizeView Roles="Admin">
+<AuthorizeView Roles="Admin,Usuario,Barbero">
     <Authorized>
         <p>Estas autenticado y autorizado, @context.User.Identity?.Name</p>
     </Authorized>
