@@ -3,6 +3,7 @@
 @using Barberia.Shared.Enums;
 @using Barberia.WEB.Auth;
 @using Barberia.WEB.Repositories;
+@using Barberia.WEB.Shared;
 @inject IRepository repository
 @inject SweetAlertService sweetAlertService
 @inject NavigationManager navigationManager
@@ -91,14 +92,27 @@
                     <ValidationMessage For="@(() => userDTO.PasswordConfirm)" />
                 </div>
             </div>
+            <div class="mb-3">
+                <InputImg Label="Foto" ImageSelected="ImageSelected" ImageURL="@imageUrl" />
+            </div>
+
         </div>
-    </div>
+        </div>
         </div>
     </div>
 </EditForm>
 
 @code {
     private UserDTO userDTO = new();
+
+    private string? imageUrl;
+
+    private void ImageSelected(string imagenBase64)
+    {
+        userDTO.Photo = imagenBase64;
+        imageUrl = null;
+    }
+
 
     private async Task CreateUserAsync()
     {
