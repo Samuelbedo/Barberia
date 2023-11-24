@@ -146,6 +146,7 @@ namespace Barberia.API.Data
         {
             await _userHelper.CheckRoleAsync(UserType.Admin.ToString());
             await _userHelper.CheckRoleAsync(UserType.Usuario.ToString());
+            await _userHelper.CheckRoleAsync(UserType.Barbero.ToString());
         }
 
     }

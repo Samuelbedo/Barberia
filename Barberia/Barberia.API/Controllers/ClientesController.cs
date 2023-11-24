@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Barberia.API.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("/api/clientes")]
     public class ClientesController : ControllerBase
